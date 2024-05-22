@@ -19,7 +19,7 @@ class: text-center
 <br>
 <span class="font-light font-serif my-0 text-xl">Frontend Nerd</span>
 <br>
-<span>🍍 Pinia & <logos-vue /> Router Author</span>
+<span><logos-pinia />, <logos-vue /> Router, <img class="inline-block -translate-y-[5px]" style="height: 1.5em;" src="/vuefire.svg"> Author</span>
 
 </p>
 
@@ -201,7 +201,8 @@ layout: two-cols
 
 ```vue
 <script setup>
-const data = await fetchSomeData()
+const route = useRoute()
+const data = await fetchSomeData(route.params.id)
 </script>
 
 <template>
@@ -221,6 +222,9 @@ const data = await fetchSomeData()
 - No local loading state
 - No local error handling
 - Cascading loading states
+- No preloading
+- No update if params change
+- Everything depends on _rendering_ the component
 
 </v-clicks>
 
@@ -272,9 +276,56 @@ layout: cover
 
 - [<logos-vue /> unplugin-vue-router](https://github.com/posva/unplugin-vue-router)
 - [🍹 Pinia Colada](https://github.com/posva/pinia-colada)
-- [👨‍💻 Let's work together](https://cal.com/posva)
+- [🌁 Slides <span class="font-mono">https://data-loaders-frontend-nation.netlify.app</span>](https://data-loaders-frontend-nation.netlify.app)
+- [<carbon-logo-github /> <span class="font-mono">posva/data-loaders-frontend-nation</span>](https://github.com/posva/data-loaders-frontend-nation)
+- [❤️ Sponsor me](https://esm.dev/open-source)
 
 </v-clicks>
+
+<!-- 
+- Show project index, it shows artwork
+- Install uvr
+- add to vite config (for pages and types but not needed for data loading itself)
+- add plugins to main.ts
+- index.vue
+  - migrate to defineBasicLoader
+  - add script
+  - set the page to 1
+  - export and explain what it does
+  - refactor setup to use it
+  - pass the page from params
+- search.vue
+  - not fully working
+  - add basic loader that search artworks
+  - parse query page and text
+  - explain that if invalid we can throw a navigation result or return to control the navigation
+  - show redirect to page 1
+  - Add full res images
+    - extra fetch that depends on the first one
+    - add new loader
+    - await the first loader
+    - explain this is different from below
+    - data is consistent
+    - await getArtworkImagesURLs (needs to map the data to their ids)
+    - use a map to host the artworks based on their id
+    - return it
+  - How not to wait for the full res images
+    - set the loader to lazy
+    - show the network panel
+    - this is sequential loading
+    - show server: false
+  - Alright but pretty slow when coming back to a visited page. cache data?
+  - pinia colada: fetching layer
+  - integrate well with data loaders
+  - migrate index loader to pinia colada
+  - show how good it is
+  - explain staleTime and show
+  - do the same for search
+  - explain the data loader is implemented by using pinia colada, outside of pinia colada
+    - this is the big advantage of loaders, they are mainly a spec to be followed
+    - any library could implement their own loader
+    - the colada loader has much more like only triggering if used params and query change
+ -->
 
 
 <style>
