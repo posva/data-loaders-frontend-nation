@@ -8,8 +8,8 @@
     "export": "slidev export"
   },
   "dependencies": {
-    "@slidev/cli": "^0.49.0-beta.1",
     "@posva/slidev-theme": "^0.1.0",
-    "vue": "^3.4.21"
+    "@slidev/cli": "^0.49.3",
+    "vue": "^3.4.27"
   }
 }
